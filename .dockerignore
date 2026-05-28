@@ -1,0 +1,30 @@
+# Secrets — never bake into image
+.env
+.env.*
+*.pem
+*.key
+
+# Python
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Frontend (not needed in backend image)
+frontend/
+
+# Dev/deploy tooling
+deploy/
+.github/
+.cursor/
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

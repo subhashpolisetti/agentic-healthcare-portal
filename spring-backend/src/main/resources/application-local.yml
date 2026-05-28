@@ -1,0 +1,52 @@
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER:root}
+    password: ${DB_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 1
+      connection-timeout: 30000
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${SMTP_USERNAME:}
+    password: ${SMTP_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:local-dev-secret-must-be-at-least-32-chars!!}
+    expiration: 86400000
+  cors:
+    allowed-origins: http://localhost:5173,http://localhost:5174
+  ai-service:
+    url: http://localhost:8001
+  admin:
+    email: ${ADMIN_EMAIL:admin@healthcare.portal}
+    password: ${ADMIN_PASSWORD:Admin1234!}
+    name: ${ADMIN_NAME:System Admin}
+
+  # Redis — disabled by default locally.
+  # To enable: run `docker run -d -p 6379:6379 redis:alpine`
+  # then set REDIS_ENABLED=true in .env.local
+  # Features unlocked: distributed no-show sweep locks, slot caching
+  redis:
+    enabled: ${REDIS_ENABLED:false}
+    url: ${REDIS_URL:redis://localhost:6379}
+
+  # Pub/Sub — always disabled locally.
+  # NoShowEventListener falls back to direct HTTP to AI service automatically.
+  # All no-show prediction features work — just without GCP decoupling.
+  pubsub:
+    enabled: false
+    project-id: local
+    topic-appointment-booked: appointment.booked
+    audience: ""

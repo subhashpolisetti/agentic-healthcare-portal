@@ -1,0 +1,18 @@
+/* Legacy overrides — intentionally minimal. Design tokens live in styles/tokens.css */
+
+/* Vite injects styles alphabetically; ensure html/body have no conflicting overrides */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Override any browser UA styles on form controls */
+input, select, textarea, button {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
